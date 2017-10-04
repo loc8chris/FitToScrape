@@ -19,6 +19,7 @@ var Article = require("./models/articles.js");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
+var path = require("path");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
@@ -52,6 +53,10 @@ db.once("open", function() {
 
 // Routes
 // ======
+// index route loads view.html
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 // A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
